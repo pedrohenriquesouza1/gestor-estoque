@@ -1,0 +1,86 @@
+Sistema de Gestão de Estoque 
+
+ Visão Geral
+
+O  é um sistema de gerenciamento de estoque robusto, desenvolvido em JavaScript (ES6+) e fundamentado nos princípios da Programação Orientada a Objetos (POO). O objetivo central é garantir integridade e persistência lógica dos dados, oferecendo um fluxo sólido e confiável entre as entidades do sistema.
+
+Este projeto foi concebido como um MVP (Mínimo Produto Viável), focado em operações essenciais de controle de estoque, mas com arquitetura escalável e boas práticas de encapsulamento para proteção de dados.
+
+🎯 Público-Alvo
+
+Pequenos comércios locais que necessitam de uma ferramenta simples e tecnicamente confiável.
+
+⚙️ Escopo e Arquitetura
+
+Tamanho do Projeto: Pequeno (MVP).
+
+Operações Essenciais: CRUD de estoque (Cadastro, Consulta, Atualização e Remoção).
+
+Arquitetura:
+
+Classes desacopladas.
+
+Entidade Produto separada da lógica de gerenciamento GerenciadorEstoque.
+
+Arrays dinâmicos para controle interno dos dados.
+
+Encapsulamento com campos privados (#) para proteção de informações sensíveis.
+
+🛠️ Tecnologias Utilizadas
+
+Linguagem: JavaScript (ES6+).
+
+POO: Classes, encapsulamento e modularidade.
+
+Interface: Bootstrap para layout responsivo e profissional.
+
+Versionamento: Git para rastreabilidade e segurança durante refatorações.
+
+🚀 Funcionalidades Principais
+
+Cadastro de produtos com validação de entrada.
+
+Cálculo automático da margem de lucro por unidade.
+
+Sistema de busca inteligente para localização rápida de itens.
+
+Abate de estoque em tempo real após simulação de venda.
+
+Interface intuitiva e responsiva, focada na eficiência do operador final.
+
+📂 Estrutura do Projeto
+
+projeto-estoque/
+├── src/
+│   └── index.js         # Lógica principal (Classes e Gerenciamento)
+├── style/
+│   └── style.css        # Arquivo de estilos CSS
+├── index.html           # Página principal HTML
+└── README.md            # Documentação e histórico do legado
+```
+
+---
+
+## 📈 Objetivo
+
+Entregar uma solução prática e confiável para gestão de estoque, com foco em **simplicidade, precisão e escalabilidade**, servindo como base para futuras evoluções e integrações.
+
+---
+
+## 🚧 Status do Projeto
+
+✅ MVP concluído\
+🔄 Planejamento para novas funcionalidades (relatórios, exportação de dados, integração com banco de dados).
+
+---
+
+## 🤝 Contribuições
+
+Contribuições são bem-vindas!\
+Sinta-se à vontade para abrir **issues** ou enviar **pull requests** com melhorias e sugestões.
+
+---
+
+## 📜 Licença
+
+Este projeto está sob a licença MIT. Consulte o arquivo LICENCE para mais detalhes.
