@@ -15,7 +15,7 @@ class Produto {
     }
 
     Resumo() {
-        return `Produto ${this.#nome}; Estoque: ${this.#quant} unidades`
+        return this.#nome
     }
     
 }
@@ -31,7 +31,7 @@ class Estoque {
 
     adicionar(product) {
         this.lista.push(product)
-        console.log(`${product.nome} adicionado com sucesso`)
+        console.log(`${product.Resumo()} ---- Adicionado com sucesso`)
     }
 
     remove() {
@@ -47,7 +47,6 @@ const gerenciadorEstoque = new Estoque()
 gerenciadorEstoque.adicionar(peca1)
 const peca2 = new Produto("Filtro de óleo Volks Santana", 15.90, 35.49, 50)
 gerenciadorEstoque.adicionar(peca2)
-console.log(peca2.Resumo());
 console.log(`Lucro por peça: R$ ${peca2.calcLucro().toFixed(2)}`);
 /* O QUE A CLASS ESTOQUE PRECISA SABER SOBRE O PRODUTO? 
 1. O nome
