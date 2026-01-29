@@ -43,9 +43,13 @@ class Estoque {
         return `${product.Resumo()}`
     }
 
-    search() {
-        Produto.comparadorNome("Óleo 5w40 sintético")
-        //continuar a partir daqui, pergunte ao chatGPT ou consulte nas docs como fazer uma busca com boas práticas
+    search(nomeBus) {
+        for(const value of this.#lista) {
+            if(value.comparadorNome(nomeBus) === true) {
+                return value
+            }
+        }
+        return null
     }
 
     remove() {
@@ -56,9 +60,15 @@ class Estoque {
 
 const gerenciadorEstoque = new Estoque()
 gerenciadorEstoque.adicionar(peca1)
+
 const peca2 = new Produto("Filtro de óleo Volks Santana", 15.90, 35.49, 50)
 gerenciadorEstoque.adicionar(peca2)
 console.log(`Lucro por peça: R$ ${peca2.calcLucro().toFixed(2)}`);
-/* O QUE A CLASS ESTOQUE PRECISA SABER SOBRE O PRODUTO? 
-1. O nome
-2. Quantidade */
+
+const res = gerenciadorEstoque.search("bolo de pote")
+if(res != null) {
+    console.log(`Produto encontrado, ${res.Resumo()}`)
+} else {
+    console.log("nenhum produto encontrado :(")
+}
+
