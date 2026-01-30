@@ -29,9 +29,8 @@ class Produto {
 }
 
 const peca1 = new Produto("Óleo 5w40 sintético", 25.90, 39.99, 120);
-console.log(peca1.Resumo());
-console.log(`Lucro por peça: R$ ${peca1.calcLucro().toFixed(2)}`);
-
+console.log(peca1.Resumo()); // console.log que testa o chamado do método Resumo()
+console.log(`Lucro por peça: R$ ${peca1.calcLucro().toFixed(2)}`); // console.log que testa o chamado do método calcLucro()
 class Estoque {
     #lista
     constructor() {
@@ -52,8 +51,8 @@ class Estoque {
         return null
     }
 
-    remove() {
-        for(let cont = 0; cont <= this.#lista.length; cont++) {
+    remove(nomeBus) {
+        for(let cont = 0; cont < this.#lista.length; cont++) {
             if(this.#lista[cont].comparadorNome(nomeBus)) {
                 this.#lista.splice(cont, 1)
                 return true
@@ -69,12 +68,19 @@ gerenciadorEstoque.adicionar(peca1)
 
 const peca2 = new Produto("Filtro de óleo Volks Santana", 15.90, 35.49, 50)
 gerenciadorEstoque.adicionar(peca2)
-console.log(`Lucro por peça: R$ ${peca2.calcLucro().toFixed(2)}`);
+//console.log(`Lucro por peça: R$ ${peca2.calcLucro().toFixed(2)}`); 
 
-const res = gerenciadorEstoque.search("bolo de pote")
+const res = gerenciadorEstoque.search("Óleo 5w40 sintético")
 if(res != null) {
     console.log(`Produto encontrado, ${res.Resumo()}`)
 } else {
     console.log("nenhum produto encontrado :(")
 }
 
+const rem = gerenciadorEstoque.remove("Óleo 5w40 sintético")
+
+if(rem) {
+    console.log("Produto removido com sucesso!")
+} else {
+    console.log("Não foi possível remover o seu produto, tente novamente!")
+}
