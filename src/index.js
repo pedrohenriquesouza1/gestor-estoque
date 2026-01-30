@@ -53,7 +53,13 @@ class Estoque {
     }
 
     remove() {
-        //continuar daqui
+        for(let cont = 0; cont <= this.#lista.length; cont++) {
+            if(this.#lista[cont].comparadorNome(nomeBus)) {
+                this.#lista.splice(cont, 1)
+                return true
+            }
+        }
+        return false
     }
 
 }
