@@ -19,7 +19,7 @@ class Produto {
     }
     
     comparadorNome(nomeBus) {
-        if(this.#nome === nomeBus) {
+        if(this.#nome.toLowerCase() === nomeBus.toLowerCase()) {
             return true
         } else {
             return false
@@ -40,6 +40,7 @@ class Estoque {
     #lista
     constructor() {
         this.#lista = []
+        this.carregarDado()
     }
 
     adicionar(product) {
@@ -120,7 +121,7 @@ document.getElementById('btn-adicionar').addEventListener('click', function() {
 
 document.getElementById('btn-buscar').addEventListener('click', function() {
     const nomeBuscado = document.getElementById('search-nome').value
-    const divRes = document.querySelector('.result-area')
+    const divRes = document.getElementById('resultado-busca')
     const res = gerenciadorEstoque.search(nomeBuscado)
     if (res != null) {
         divRes.innerHTML = `
@@ -139,10 +140,10 @@ document.getElementById('btn-buscar').addEventListener('click', function() {
 document.getElementById('btn-remover').addEventListener('click', function(){
     const nomRem = document.getElementById('remove-nome').value
     const resRem = document.getElementById('msg-remocao')
-    if(nomRem === "") return;
+    if (nomRem === "") return;
     const rem = gerenciadorEstoque.remove(nomRem) 
 
-    if(rem) {
+    if (rem) {
         resRem.innerHTML = `<p style="color: green;">"${nomRem}" foi removido do estoque.</p>`
         resRem.style.borderLeft = "4px solid green"
 
