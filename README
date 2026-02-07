@@ -55,7 +55,9 @@ projeto-estoque/
 │   └── index.js
 |   └──  # Lógica principal (Classes e Gerenciamento)
 ├── style/
-│   └── style.css        # Arquivo de estilos CSS
+|   └── style.css
+├── img/
+    └── box.png
 ├── index.html           # Página principal HTML
 └── README.md            # Documentação e histórico do legado
 ```
