@@ -24,7 +24,7 @@ Entidade Produto separada da lógica de gerenciamento GerenciadorEstoque.
 
 Arrays dinâmicos para controle interno dos dados.
 
-Encapsulamento com campos privados (#) para proteção de informações sensíveis.
+Encapsulamento com campos privados "#" para proteção de informações sensíveis.
 
 🛠️ Tecnologias Utilizadas
 
@@ -52,7 +52,8 @@ Interface intuitiva e responsiva, focada na eficiência do operador final.
 
 projeto-estoque/
 ├── src/
-│   └── index.js         # Lógica principal (Classes e Gerenciamento)
+│   └── index.js
+|   └──  # Lógica principal (Classes e Gerenciamento)
 ├── style/
 │   └── style.css        # Arquivo de estilos CSS
 ├── index.html           # Página principal HTML
@@ -61,26 +62,26 @@ projeto-estoque/
 
 ---
 
-## 📈 Objetivo
+ 📈 Objetivo
 
 Entregar uma solução prática e confiável para gestão de estoque, com foco em **simplicidade, precisão e escalabilidade**, servindo como base para futuras evoluções e integrações.
 
 ---
 
-## 🚧 Status do Projeto
+ 🚧 Status do Projeto
 
 ✅ MVP concluído\
 🔄 Planejamento para novas funcionalidades (relatórios, exportação de dados, integração com banco de dados).
 
 ---
 
-## 🤝 Contribuições
+ 🤝 Contribuições
 
 Contribuições são bem-vindas!\
 Sinta-se à vontade para abrir **issues** ou enviar **pull requests** com melhorias e sugestões.
 
 ---
 
-## 📜 Licença
+ 📜 Licença
 
 Este projeto está sob a licença MIT. Consulte o arquivo LICENCE para mais detalhes.

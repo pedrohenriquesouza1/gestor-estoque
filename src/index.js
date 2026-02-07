@@ -26,11 +26,16 @@ class Produto {
         }
     }
     //método acima compara o nome com o nome que vai ser utilizado no search, no caso
+    toJSON() {
+        return {
+            nome: this.#nome,
+            precoCompra: this.#precoCompra,
+            precoVenda: this.#precoVenda,
+            quant: this.#quant
+        }
+    }
 }
 
-const peca1 = new Produto("Óleo 5w40 sintético", 25.90, 39.99, 120);
-console.log(peca1.Resumo()); // console.log que testa o chamado do método Resumo()
-console.log(`Lucro por peça: R$ ${peca1.calcLucro().toFixed(2)}`); // console.log que testa o chamado do método calcLucro()
 class Estoque {
     #lista
     constructor() {
@@ -39,6 +44,7 @@ class Estoque {
 
     adicionar(product) {
         this.#lista.push(product)
+        this.salvarDados()
         return `${product.Resumo()}`
     }
 
@@ -55,32 +61,107 @@ class Estoque {
         for(let cont = 0; cont < this.#lista.length; cont++) {
             if(this.#lista[cont].comparadorNome(nomeBus)) {
                 this.#lista.splice(cont, 1)
+                this.salvarDados()
                 return true
             }
         }
         return false
+    }   
+
+    salvarDados() {
+        const dadospSalvar = this.#lista.map(b => b.toJSON())
+        localStorage.setItem('meuEstoque', JSON.stringify(dadospSalvar))
     }
 
+    carregarDado() {
+        const dadosSalvados = localStorage.getItem('meuEstoque')
+        if(dadosSalvados) {
+            const listaObj = JSON.parse(dadosSalvados)
+            this.#lista = listaObj.map(
+                dado => new Produto(
+                    dado.nome,
+                    dado.precoCompra,
+                    dado.precoVenda,
+                    dado.quant
+                )
+            )
+        }
+    }
 }
 
 const gerenciadorEstoque = new Estoque()
-gerenciadorEstoque.adicionar(peca1)
 
-const peca2 = new Produto("Filtro de óleo Volks Santana", 15.90, 35.49, 50)
-gerenciadorEstoque.adicionar(peca2)
-//console.log(`Lucro por peça: R$ ${peca2.calcLucro().toFixed(2)}`); 
+document.getElementById('btn-adicionar').addEventListener('click', function() {
+    const nomeImput = document.getElementById('input-nome')
+    const inputprecoCompra = document.getElementById('input-compra')
+    const inputprecoVenda = document.getElementById('input-venda')
+    const inputQuant = document.getElementById('input-quant')
 
-const res = gerenciadorEstoque.search("Óleo 5w40 sintético")
-if(res != null) {
-    console.log(`Produto encontrado, ${res.Resumo()}`)
-} else {
-    console.log("nenhum produto encontrado :(")
-}
+    const nomeProduto = nomeImput.value
+    const compraProduto = Number(inputprecoCompra.value)
+    const precoVenda = Number(inputprecoVenda.value)
+    const quantidade = Number(inputQuant.value)
 
-const rem = gerenciadorEstoque.remove("Óleo 5w40 sintético")
+    if (nomeProduto === "" || inputprecoCompra.value === "") {
+        window.alert("O produto não pode ter valor vazio nem nome")
+        return;
+    }
 
-if(rem) {
-    console.log("Produto removido com sucesso!")
-} else {
-    console.log("Não foi possível remover o seu produto, tente novamente!")
-}
+    const newItem = new Produto(nomeProduto, compraProduto, precoVenda, quantidade)
+
+    gerenciadorEstoque.adicionar(newItem)
+    window.alert('Produto adicionado com sucesso!')
+
+    nomeImput.value = ""
+    inputprecoCompra.value = ""
+    inputprecoVenda.value = ""
+    inputQuant.value = ""
+})
+
+document.getElementById('btn-buscar').addEventListener('click', function() {
+    const nomeBuscado = document.getElementById('search-nome').value
+    const divRes = document.querySelector('.result-area')
+    const res = gerenciadorEstoque.search(nomeBuscado)
+    if (res != null) {
+        divRes.innerHTML = `
+        <p style="color: green; font-weight: bold;">Produto Encontrado!</p>
+        <p>${res.Resumo()}</p>
+        <p>Lucro p/ unidade: R$ ${res.calcLucro().toFixed(2)}</p>
+        `;
+        divRes.style.borderLeft = "4px solid green"
+    }  else {
+        divRes.innerHTML = `<p style="color: #d32f2f;">Produto "${nomeBuscado}" não encontrado.</p>`
+        divRes.style.borderLeft = '4px solid #d32f2f'
+    }
+    
+}) 
+
+document.getElementById('btn-remover').addEventListener('click', function(){
+    const nomRem = document.getElementById('remove-nome').value
+    const resRem = document.getElementById('msg-remocao')
+    if(nomRem === "") return;
+    const rem = gerenciadorEstoque.remove(nomRem) 
+
+    if(rem) {
+        resRem.innerHTML = `<p style="color: green;">"${nomRem}" foi removido do estoque.</p>`
+        resRem.style.borderLeft = "4px solid green"
+
+        document.getElementById('search-nome').value = '';
+        document.getElementById('resultado-busca').innerHTML = '<span class="placeholder-text">O resultado da busca aparecerá aqui...</span>';
+    } else {
+        resRem.innerHTML = `<p style="color: orange;">Erro: Não foi possível remover. Produto não encontrado.</p>`
+        resRem.style.borderLeft = "4px solid #d32f2f"
+    }
+})
+
+document.getElementById('search-nome').addEventListener('input', function() {
+    const divRes = document.getElementById('resultado-busca');
+    divRes.innerHTML = '<span class="placeholder-text">O resultado da busca aparecerá aqui...</span>';
+    divRes.style.borderLeft = "none"; 
+});
+
+document.getElementById('remove-nome').addEventListener('input', function() {
+    const remRes = document.getElementById('msg-remocao')
+    remRes.innerHTML = '<span class="placeholder-text">Se remover algum produto, ele aparece aqui...</span>'
+    remRes.style.borderLeft = "none"
+})

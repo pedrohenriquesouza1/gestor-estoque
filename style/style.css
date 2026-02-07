@@ -1,0 +1,164 @@
+:root {
+    --bg-page: #eef2f6;
+    --bg-card: #ffffff;
+    --text-primary: #333;
+    --text-secondary: #666;
+    --border: #ddd;
+    
+    --btn-primary: #2563eb;  /* Azul */
+    --btn-secondary: #4b5563; /* Cinza */
+    --btn-danger: #dc2626;    /* Vermelho */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column; /* Faz os elementos ficarem um EMBAIXO do outro */
+    align-items: center;    /* Centraliza horizontalmente */
+    min-height: 100vh;      /* Garante que a tela ocupe toda a altura */
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+    flex: 1;
+}
+
+header h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--text-secondary);
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Layout em Grid: Esquerda (Adicionar) | Direita (Buscar/Remover) */
+.grid-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 20px;
+}
+
+/* Estilo dos Cards */
+.card {
+    background: var(--bg-card);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.card h2 {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: var(--text-secondary);
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* Formulários e Inputs */
+.form-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-box label {
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+    color: var(--text-secondary);
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+}
+
+.side-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.2s;
+}
+
+input:focus {
+    border-color: var(--btn-primary);
+}
+
+/* Botões */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    color: white;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: opacity 0.2s;
+}
+
+.btn:hover { opacity: 0.9; }
+
+.primary { background-color: var(--btn-primary); width: 100%; margin-top: 10px; }
+.secondary { background-color: var(--btn-secondary); }
+.danger { background-color: var(--btn-danger); }
+
+/* Áreas de Resultado (Feedback) */
+.result-area {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #f8fafc;
+    border: 1px dashed var(--border);
+    border-radius: 6px;
+    min-height: 50px;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+.placeholder-text {
+    color: #999;
+    font-style: italic;
+    font-size: 0.8rem;
+}
+
+/* Responsivo: vira uma coluna só no celular */
+@media (max-width: 700px) {
+    .grid-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+#dedicate {
+    margin-top: 40px;       
+    padding-top: 20px;
+    border-top: 1px solid #e5e7eb; 
+    width: 100%;
+    max-width: 900px;       
+    text-align: center;    
+    color: var(--text-secondary);
+    font-size: 0.85rem;  
+}
